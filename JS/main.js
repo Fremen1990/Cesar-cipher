@@ -1,6 +1,13 @@
 const messageInput = document.querySelector(".input");
+const messageDecryption = document.querySelector(".inputDecryption");
 const btnTranscrypt = document.querySelector(".transcrypt-button");
-const container = document.querySelector(".container");
+const btnTranscryptKeyboard = document.querySelector(".transcrypt-button");
+const btnDecrypt = document.querySelector(".decrypt-button");
+const btnDecryptKeyboard = document.querySelector(".decrypt-button");
+const btnTranscryptClear = document.querySelector(".transcrypt-clear");
+const btnDecryptClear = document.querySelector(".decrypt-clear");
+const containerTranscrypted = document.querySelector(".containerTranscription");
+const containerDecrypted = document.querySelector(".containerDecryption");
 
 const spnText = document.querySelector(".text");
 const spnCursor = document.querySelector(".cursor");
@@ -52,26 +59,33 @@ const delayedSection = () => {
 setTimeout(delayedSection, 18000);
 
 let input = "";
+let inputDecryption = "";
 
 const textTyped = (e) => {
   input = e.target.value;
   console.log(e.target.value);
+};
+const textTypedDecryption = (ed) => {
+  inputDecryption = ed.target.value;
+  console.log(ed.target.value);
 };
 
 let alphabet = "abcdefghijklmnoprstuvwxyz";
 const alphabetCapitalLetters = alphabet.toUpperCase();
 let shiftNumber = 13;
 let ShiftNumberToEncrypt = alphabet.length - shiftNumber;
-let result = [];
+let resultTranscrypt = [];
+let resultDecrypt = [];
 
-function cesarCipher() {
+function cesarCipher(e) {
+  e.preventDefault();
   if (typeof input !== "string") return "Enteret text need to be string format";
 
   if (input == "") return "Please enter text";
 
   input = [...input];
 
-  result = input.map((el) => {
+  resultTranscrypt = input.map((el) => {
     if (el === " " || /\d/.test(el)) return el;
     if (/[A-Z]/.test(el)) {
       const index = alphabetCapitalLetters.indexOf(el);
@@ -83,19 +97,24 @@ function cesarCipher() {
       return alphabet[newIndex];
     }
   });
-  console.log(result.join(""));
-  return result.join("");
+  console.log(resultTranscrypt.join(""));
+  addMessageToHTMLtranscrypted();
+  return resultTranscrypt.join("");
 }
 
-function cesarCipherReverse(input) {
-  if (typeof input !== "string") return "Plese enter text in string format";
+function cesarCipherReverse(e) {
+  e.preventDefault();
+  if (typeof inputDecryption !== "string")
+    return "Plese enter text in string format";
 
-  if (input == "") return "Please enter text what you want to encrypt";
+  if (inputDecryption == "")
+    return "Please enter text what you want to encrypt";
 
-  input = [...input];
+  inputDecryption = [...inputDecryption];
 
-  result = input.map((el) => {
-    if (el === " " || /\d/.test(el)) {
+  resultDecrypt = inputDecryption.map((el) => {
+    if (el === " " || /\d/.test(el)) return el;
+    if (/[A-Z]/.test(el)) {
       const index = alphabetCapitalLetters.indexOf(el);
       const newIndex = (index + ShiftNumberToEncrypt) % alphabet.length;
       return alphabetCapitalLetters[newIndex];
@@ -105,16 +124,54 @@ function cesarCipherReverse(input) {
       return alphabet[newIndex];
     }
   });
-  console.log(result.join(""));
-  return result.join("");
+  console.log(resultDecrypt.join(""));
+  addMessageToHTMLdecrypted();
+  return resultDecrypt.join("");
 }
 
-const addMessageToHTML = () => {
+const addMessageToHTMLtranscrypted = () => {
   const transcryptedMessage = document.createElement("p");
-  transcryptedMessage.textContent = result.join("");
-  container.appendChild(transcryptedMessage);
+  transcryptedMessage.textContent = resultTranscrypt.join("");
+  containerTranscrypted.appendChild(transcryptedMessage);
+  messageInput.value = "";
+};
+
+const addMessageToHTMLdecrypted = () => {
+  const decryptedMessage = document.createElement("p");
+  decryptedMessage.textContent = resultDecrypt.join("");
+  containerDecrypted.appendChild(decryptedMessage);
+  messageDecryption.value = "";
+};
+
+const clearTranscrypted = (e) => {
+  e.preventDefault();
+  console.log("klik");
+  containerTranscrypted.textContent = "";
+};
+
+const clearDecrypted = (e) => {
+  e.preventDefault();
+  console.log("klik");
+  containerDecrypted.textContent = "";
+};
+
+const keyboardCesarCipher = (e) => {
+  if (13 == e.keyCode) {
+    console.log("dziala");
+  }
+};
+
+const keyboardCesarCipherReverse = (e) => {
+  if (13 == e.keyCode) {
+    console.log("dziala");
+  }
 };
 
 messageInput.addEventListener("input", textTyped);
+messageDecryption.addEventListener("input", textTypedDecryption);
 btnTranscrypt.addEventListener("click", cesarCipher);
-btnTranscrypt.addEventListener("click", addMessageToHTML);
+btnTranscryptKeyboard.addEventListener("keydown", keyboardCesarCipher);
+btnDecrypt.addEventListener("click", cesarCipherReverse);
+btnDecryptKeyboard.addEventListener("keydown", keyboardCesarCipherReverse);
+btnTranscryptClear.addEventListener("click", clearTranscrypted);
+btnDecryptClear.addEventListener("click", clearDecrypted);

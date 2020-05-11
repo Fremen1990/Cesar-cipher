@@ -26,22 +26,42 @@
         </p> -->
       </div>
     </section>
+    <div class="userControl">
+      <div class="transcrypt">
+        <section class="user-input">
+          <form id="form" class="user-input__input">
+            <label for="input">Here type text what you want to encrypt:</label>
+            <input class="input" type="text" />
+            <button type="submit" class="transcrypt-button">
+              Transcrypt
+            </button>
+            <button class="transcrypt-clear">Clear</button>
+          </form>
+        </section>
 
-    <section class="user-input">
-      <div class="user-input__input">
-        <label for="input">Here type text what you want to encrypt:</label>
-        <input class="input" type="text" />
+        <section class="transcrypted-input">
+          <h2>Your transcrytped message:</h2>
+          <div class="containerTranscription"></div>
+        </section>
       </div>
+      <div class="decrypt">
+        <section class="user-input">
+          <form id="form" class="user-input__input">
+            <label for="input">Here type text what you want to decrypt:</label>
+            <input class="inputDecryption" type="text" />
+            <button type="submit" class="decrypt-button">
+              Decrypt
+            </button>
+            <button class="decrypt-clear">Clear</button>
+          </form>
+        </section>
 
-      <button class="transcrypt-button">
-        Transcrypt
-      </button>
-    </section>
-
-    <section class="transcrypted-input">
-      <h2>Your transcrytped message:</h2>
-      <div class="container"></div>
-    </section>
+        <section class="transcrypted-input">
+          <h2>Your decrypted message:</h2>
+          <div class="containerDecryption"></div>
+        </section>
+      </div>
+    </div>
     <script src="JS/main.js"></script>
   </body>
 </html>
