@@ -48,15 +48,16 @@ setInterval(cursorAnimation, 400);
 //Opóźnione wejście sekcji
 
 const delayedSection = () => {
-  const userInput = document.querySelector(".user-input");
-  const transcryptedInput = document.querySelector(".transcrypted-input");
-  userInput.style.opacity = "1";
-  userInput.style.transition = "4s";
-  transcryptedInput.style.opacity = "1";
-  transcryptedInput.style.transition = "4s";
+  const transcryptArea = document.querySelector(".transcrypt");
+  transcryptArea.style.opacity = "1";
+  transcryptArea.style.transition = "15s linear";
+
+  const decryptArea = document.querySelector(".decrypt");
+  decryptArea.style.opacity = "1";
+  decryptArea.style.transition = "15s linear";
 };
 
-setTimeout(delayedSection, 18000);
+setTimeout(delayedSection, 5000);
 
 let input = "";
 let inputDecryption = "";
