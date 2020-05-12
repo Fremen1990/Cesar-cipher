@@ -50,14 +50,14 @@ setInterval(cursorAnimation, 400);
 const delayedSection = () => {
   const transcryptArea = document.querySelector(".transcrypt");
   transcryptArea.style.opacity = "1";
-  transcryptArea.style.transition = "15s linear";
+  transcryptArea.style.transition = "5s linear";
 
   const decryptArea = document.querySelector(".decrypt");
   decryptArea.style.opacity = "1";
-  decryptArea.style.transition = "15s linear";
+  decryptArea.style.transition = "5s linear";
 };
 
-setTimeout(delayedSection, 5000);
+setTimeout(delayedSection, 1000);
 
 let input = "";
 let inputDecryption = "";
@@ -78,21 +78,22 @@ let ShiftNumberToEncrypt = alphabet.length - shiftNumber;
 let resultTranscrypt = [];
 let resultDecrypt = [];
 
+function checkIfString(input) {
+  input = [...input];
+  if (input == "") return "Please enter text";
+  if (typeof input !== "string") return "Input is not a string type";
+}
 function cesarCipher(e) {
   e.preventDefault();
-  if (typeof input !== "string") return "Enteret text need to be string format";
-
-  if (input == "") return "Please enter text";
-
   input = [...input];
-
+  checkIfString(input);
   resultTranscrypt = input.map((el) => {
     if (el === " " || /\d/.test(el)) return el;
     if (/[A-Z]/.test(el)) {
       const index = alphabetCapitalLetters.indexOf(el);
       const newIndex = (index + shiftNumber) % alphabet.length;
       return alphabetCapitalLetters[newIndex];
-    } else {
+    } else if (/[a-z]/.test(el)) {
       const index = alphabet.indexOf(el);
       const newIndex = (index + shiftNumber) % alphabet.length;
       return alphabet[newIndex];
@@ -105,21 +106,15 @@ function cesarCipher(e) {
 
 function cesarCipherReverse(e) {
   e.preventDefault();
-  if (typeof inputDecryption !== "string")
-    return "Plese enter text in string format";
-
-  if (inputDecryption == "")
-    return "Please enter text what you want to encrypt";
-
   inputDecryption = [...inputDecryption];
-
+  checkIfString(inputDecryption);
   resultDecrypt = inputDecryption.map((el) => {
     if (el === " " || /\d/.test(el)) return el;
     if (/[A-Z]/.test(el)) {
       const index = alphabetCapitalLetters.indexOf(el);
       const newIndex = (index + ShiftNumberToEncrypt) % alphabet.length;
       return alphabetCapitalLetters[newIndex];
-    } else {
+    } else if (/[a-z]/.test(el)) {
       const index = alphabet.indexOf(el);
       const newIndex = (index + ShiftNumberToEncrypt) % alphabet.length;
       return alphabet[newIndex];
@@ -148,12 +143,14 @@ const clearTranscrypted = (e) => {
   e.preventDefault();
   console.log("klik");
   containerTranscrypted.textContent = "";
+  input = "";
 };
 
 const clearDecrypted = (e) => {
   e.preventDefault();
   console.log("klik");
   containerDecrypted.textContent = "";
+  input = "";
 };
 
 const keyboardCesarCipher = (e) => {
