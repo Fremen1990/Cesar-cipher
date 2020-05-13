@@ -26,10 +26,10 @@ body {
 }
 
 .transcrypt {
-  opacity: 0;
+  opacity: 1;
 }
 .decrypt {
-  opacity: 0;
+  opacity: 1;
 }
 
 div .transcrypt div .decrypt {

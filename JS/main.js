@@ -20,7 +20,7 @@ let activeText = 0;
 
 // Implementacja
 const addLetter = () => {
-  // Użyj w środku setTimeout
+  // w środku setTimeout
   if (activeLetter >= 0) {
     spnText.textContent += txt[activeText][activeLetter];
   }
@@ -45,7 +45,7 @@ const cursorAnimation = () => {
 };
 setInterval(cursorAnimation, 400);
 
-//Opóźnione wejście sekcji
+// Opóźnione wejście sekcji
 
 const delayedSection = () => {
   const transcryptArea = document.querySelector(".transcrypt");
@@ -97,7 +97,7 @@ function cesarCipher(e) {
       const index = alphabet.indexOf(el);
       const newIndex = (index + shiftNumber) % alphabet.length;
       return alphabet[newIndex];
-    }
+    } else return "Use only alphabetical characters";
   });
   console.log(resultTranscrypt.join(""));
   addMessageToHTMLtranscrypted();
@@ -118,7 +118,7 @@ function cesarCipherReverse(e) {
       const index = alphabet.indexOf(el);
       const newIndex = (index + ShiftNumberToEncrypt) % alphabet.length;
       return alphabet[newIndex];
-    }
+    } else return "Use only alphabetical characters";
   });
   console.log(resultDecrypt.join(""));
   addMessageToHTMLdecrypted();
