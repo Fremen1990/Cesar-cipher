@@ -1,13 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-}
+
+@import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap");
 
 body {
   height: 100vh;
-  background-image: url(./image/PapyrusBackgroundImage.jpg);
+  background-image: url(/image/PapyrusBackgroundImage.jpg);
 }
 
 .title {
@@ -143,7 +140,7 @@ h2 {
     margin: 12px;
   }
   h2 {
-    margin:15px;
+    margin: 15px;
     font-size: 15px;
   }
   .input,
@@ -153,11 +150,11 @@ h2 {
     padding: 4px;
   }
   #form.user-input__input {
-height: 200px;
+    height: 200px;
   }
 }
 
-@media (max-height:420px){
+@media (max-height: 420px) {
   .description__containter {
     display: flex;
     flex-grow: 1;
@@ -191,7 +188,7 @@ height: 200px;
     margin: 2px;
   }
   h2 {
-    margin:5px;
+    margin: 5px;
     font-size: 12px;
   }
   .input,
@@ -201,11 +198,11 @@ height: 200px;
     padding: 4px;
   }
   #form.user-input__input {
-height: 90px;
+    height: 90px;
   }
   .containerTranscription,
-.containerDecryption {
-  font-size: 14px;
-  padding: 5px;
-}
+  .containerDecryption {
+    font-size: 14px;
+    padding: 5px;
+  }
 }

@@ -34,7 +34,6 @@ class DecrypttionInterface extends TranscryptionInterface {
   };
 
   cesarCipherReverse(e) {
-
     e.preventDefault();
     this.inputDecryption = [...this.inputDecryption];
 
@@ -43,7 +42,7 @@ class DecrypttionInterface extends TranscryptionInterface {
     this.resultDecrypt = this.inputDecryption.map((el) => {
       if (el === " " || /\d/.test(el)) return el;
       if (/[A-Z]/.test(el)) {
-        const index = alphabetCapitalLetters.indexOf(el);
+        const index = this.alphabetCapitalLetters.indexOf(el);
         const newIndex = (index + ShiftNumberToEncrypt) % alphabet.length;
         return alphabetCapitalLetters[newIndex];
       } else if (/[a-z]/.test(el)) {
@@ -55,6 +54,7 @@ class DecrypttionInterface extends TranscryptionInterface {
     });
     console.log(this.resultDecrypt.join(""));
     this.addMessageToHTMLdecrypted();
+    this.inputDecryption = "";
     return this.resultDecrypt.join("");
   }
 

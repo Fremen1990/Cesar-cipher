@@ -1,6 +1,5 @@
 class TranscryptionInterface {
   constructor() {
-
     this.messageInput = document.querySelector(".input");
     this.btnTranscrypt = document.querySelector(".transcrypt-button");
     this.btnTranscryptKeyboard = document.querySelector(".transcrypt-button");
@@ -18,7 +17,7 @@ class TranscryptionInterface {
       "click",
       this.clearTranscrypted.bind(this)
     );
-  
+
     this.alphabet = "abcdefghijklmnoprstuvwxyz";
     this.alphabetCapitalLetters = this.alphabet.toUpperCase();
     this.shiftNumber = 13;
@@ -54,6 +53,7 @@ class TranscryptionInterface {
     });
     console.log(this.resultTranscrypt.join(""));
     this.addMessageToHTMLtranscrypted();
+    this.input = "";
     return this.resultTranscrypt.join("");
   }
   addMessageToHTMLtranscrypted = () => {
